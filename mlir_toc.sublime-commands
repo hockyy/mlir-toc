@@ -1,0 +1,4 @@
+[
+  { "caption": "MLIR: Open TOC + Section Workspace", "command": "mlir_toc_section_workspace" },
+  { "caption": "MLIR: Refresh TOC + Section", "command": "mlir_toc_section_refresh" }
+]

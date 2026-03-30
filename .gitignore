@@ -1,0 +1,5 @@
+__pycache__/
+*.py[cod]
+*.sublime-package
+package-metadata.json
+.DS_Store
