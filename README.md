@@ -21,7 +21,7 @@ Open the Command Palette and run:
 ```json
 {
 	"name": "MLIR TOC",
-	"details": "https://github.com/YOUR_USER/mlir-toc",
+	"details": "https://github.com/hockyy/mlir-toc",
 	"labels": ["mlir", "navigation", "text manipulation"],
 	"releases": [
 		{
@@ -31,8 +31,6 @@ Open the Command Palette and run:
 	]
 }
 ```
-
-Replace `YOUR_USER/mlir-toc` with your real repo path.
 
 5. Install [ChannelRepositoryTools](https://packagecontrol.io/packages/ChannelRepositoryTools) in Sublime Text, run **ChannelRepositoryTools: Test Default Channel** (against your fork if needed), then open a pull request to `sublimehq/package_control_channel`.
 
