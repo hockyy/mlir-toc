@@ -2,6 +2,12 @@ import re
 import sublime
 import sublime_plugin
 
+
+def plugin_loaded():
+    if sublime.load_settings("Preferences.sublime-settings").get("debug"):
+        sublime.log_message("MLIR TOC: plugin loaded")
+
+
 SECTION_RE = re.compile(r'^\s*//\s*-+\s*//\s*(.*?)\s*//\s*-+\s*//\s*$')
 TOC_PREFIX = "MLIR TOC"
 SECTION_PREFIX = "MLIR Section"
@@ -78,7 +84,7 @@ def render_toc(sections):
         return "(No MLIR section headers found)"
     out = []
     for i, s in enumerate(sections, 1):
-        out.append(f"{i:>3}. L{s['start_row'] + 1:<6} {s['title']}")
+        out.append("{:>3}. L{:<6} {}".format(i, s["start_row"] + 1, s["title"]))
     return "\n".join(out)
 
 
@@ -125,7 +131,7 @@ class MlirTocSectionWorkspaceCommand(sublime_plugin.WindowCommand):
         if not toc_view:
             toc_view = self.window.new_file()
             toc_view.set_scratch(True)
-            toc_view.set_name(f"{TOC_PREFIX} — {src.name() or 'untitled'}")
+            toc_view.set_name("{} — {}".format(TOC_PREFIX, src.name() or "untitled"))
             toc_view.settings().set("mlir_toc_view", True)
             toc_view.settings().set("mlir_source_view_id", src.id())
             toc_view.settings().set("gutter", False)
@@ -134,7 +140,7 @@ class MlirTocSectionWorkspaceCommand(sublime_plugin.WindowCommand):
         if not section_view:
             section_view = self.window.new_file()
             section_view.set_scratch(True)
-            section_view.set_name(f"{SECTION_PREFIX} — {src.name() or 'untitled'}")
+            section_view.set_name("{} — {}".format(SECTION_PREFIX, src.name() or "untitled"))
             section_view.settings().set("mlir_section_view", True)
             section_view.settings().set("mlir_source_view_id", src.id())
             section_view.settings().set("word_wrap", False)
@@ -179,7 +185,8 @@ class MlirTocSectionWorkspaceCommand(sublime_plugin.WindowCommand):
     def show_section(self, src, section_view, section):
         region = row_range_to_region(src, section["start_row"], section["end_row"])
         content = src.substr(region)
-        header = f"// Section: {section['title']}  (lines {section['start_row']+1}-{section['end_row']+1})\n\n"
+        header = "// Section: {}  (lines {}-{})\n\n".format(
+            section["title"], section["start_row"] + 1, section["end_row"] + 1)
         set_view_text(section_view, header + content)
 
 
@@ -235,7 +242,8 @@ class MlirTocClickListener(sublime_plugin.EventListener):
         if section_view:
             region = row_range_to_region(src, section["start_row"], section["end_row"])
             content = src.substr(region)
-            header = f"// Section: {section['title']}  (lines {section['start_row']+1}-{section['end_row']+1})\n\n"
+            header = "// Section: {}  (lines {}-{})\n\n".format(
+                section["title"], section["start_row"] + 1, section["end_row"] + 1)
             set_view_text(section_view, header + content)
 
 
