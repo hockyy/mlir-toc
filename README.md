@@ -2,7 +2,11 @@
 
 Sublime Text plugin for [MLIR](https://mlir.llvm.org/) files: a three-pane workspace with the source, a table of contents of `// ----- // Section // ----- //` headers, and the currently selected section.
 
-**Requirements:** Sublime Text 4. User packages run in Sublime’s **Python 3.3** plugin host on stable builds, so this plugin avoids Python 3.6+ syntax (e.g. no f-strings). It uses `sublime.list_syntaxes()` / `View.assign_syntax()`. An MLIR syntax package whose grammar is named `MLIR` is recommended for highlighting in the section pane.
+**Requirements:** Sublime Text 4. User packages run in Sublime’s **Python 3.3** plugin host on stable builds, so this plugin avoids Python 3.6+ syntax (e.g. no f-strings). It uses `sublime.list_syntaxes()` / `View.assign_syntax()`.
+
+This repository includes **`mlir.sublime-syntax`**, which registers the grammar name **MLIR** for `.mlir` files (same name the plugin expects for the section pane).
+
+For local development (editors, tooling, or any scripts you run outside Sublime), Python **3.8** is pinned in **`.python-version`** for pyenv, asdf, and similar tools. That does not change the runtime inside Sublime Text.
 
 ## Commands
 
@@ -23,7 +27,7 @@ Open the Command Palette and run:
 
 ## Troubleshooting
 
-- **Commands missing in the Command Palette** — Open **View → Show Console**. If you see a traceback mentioning `mlir_toc`, fix that error. Set `"debug": true` in **Preferences → Settings** and restart; you should see `MLIR TOC: plugin loaded` when the plugin loads. Confirm **Preferences → Browse Packages…** shows `mlir-toc` with `mlir_toc.py` and `mlir_toc.sublime-commands` inside.
+- **Commands missing in the Command Palette** — Open **View → Show Console**. If you see a traceback mentioning `mlir_toc`, fix that error. Set `"debug": true` in **Preferences → Settings** and restart; you should see `MLIR TOC: plugin loaded` when the plugin loads. Confirm **Preferences → Browse Packages…** shows `mlir-toc` with `mlir_toc.py`, `mlir_toc.sublime-commands`, and `mlir.sublime-syntax` inside.
 - **Package Control → Install Package** — The package only appears there after it is merged into the default channel, or after **Package Control: Add Repository** with your GitHub URL.
 
 In the palette, search for **`MLIR`** or **`TOC Section`**.
