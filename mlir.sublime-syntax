@@ -2,7 +2,10 @@
 ---
 # http://www.sublimetext.com/docs/3/syntax.html
 #
-# Essentially a port of: github.com/mlir-visualizer/mlir-grammar/blob/master/sample.mlir
+# Derived from sublime-mlir-syntax (MIT): https://github.com/rrbutani/sublime-mlir-syntax
+# Copyright (c) 2020 Rahul Butani — see LICENSE in this package.
+#
+# Originally related to: github.com/mlir-visualizer/mlir-grammar/blob/master/sample.mlir
 name: MLIR
 file_extensions:
   - mlir
