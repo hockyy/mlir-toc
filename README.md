@@ -1,6 +1,6 @@
 # MLIR TOC
 
-Sublime Text plugin for [MLIR](https://mlir.llvm.org/) files: a three-pane workspace with the source, a table of contents of `// ----- // Section // ----- //` headers, and the currently selected section.
+Sublime Text plugin for [MLIR](https://mlir.llvm.org/) files: a three-pane workspace with the source, a table of contents of `// ----- // Section // ----- //` headers (using the **MLIR TOC** syntax for line numbers, pass names, and `func.func` symbols), and the currently selected section.
 
 For local development (editors, tooling, or any scripts you run outside Sublime), Python **3.8** is pinned in **`.python-version`** for pyenv, asdf, and similar tools. That does not change the runtime inside Sublime Text.
 
@@ -10,6 +10,29 @@ Open the Command Palette and run:
 
 - **MLIR: Open TOC + Section Workspace** — builds the layout and syncs panes.
 - **MLIR: Refresh TOC + Section** — refreshes from the source (also runs on save when the workspace is active).
+
+## TOC configuration
+
+You can tune TOC rendering from Sublime settings (`Preferences.sublime-settings`) or per-view settings:
+
+- `mlir_toc_group_by`: `"section"` (default) or `"function"`.
+- `mlir_toc_show_functions`: `false` (default) or `true` (only used when grouping by section).
+
+Example:
+
+```json
+{
+  "mlir_toc_group_by": "section",
+  "mlir_toc_show_functions": true
+}
+```
+
+### Modes
+
+- **Section mode** (`"mlir_toc_group_by": "section"`): shows section headers like `L19937 IR Dump After ...`; with `"mlir_toc_show_functions": true`, each section also lists every `func.func` found in that section with its own line number.
+- **Function mode** (`"mlir_toc_group_by": "function"`): groups TOC by `func.func @name`, then lists every section occurrence for that function.
+
+The TOC pane uses `mlir_toc.sublime-syntax` (not MLIR comment syntax). Line numbers (`L12345`), section indices (`[42]`), section titles, and pass slugs in parentheses are highlighted separately.
 
 ## Install (manual)
 

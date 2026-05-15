@@ -1,0 +1,9 @@
+{
+    // Grouping mode for the TOC:
+    //   "section"  -> section headers as top-level entries
+    //   "function" -> func.func names as top-level entries
+    "mlir_toc_group_by": "section",
+
+    // When grouping by section, show func.func entries under each section.
+    "mlir_toc_show_functions": false
+}

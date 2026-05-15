@@ -1,0 +1,52 @@
+%YAML 1.2
+---
+name: MLIR TOC
+file_extensions:
+  - mlir-toc
+scope: source.mlir-toc
+
+contexts:
+  main:
+    - include: lines
+
+  lines:
+    - match: ^── .+ ──$
+      scope: comment.banner.mlir-toc
+    - match: ^⊘ .+$
+      scope: comment.block.mlir-toc
+    - match: ^(▾)\s+@([\w$.-]+)\s*$
+      scope: meta.function.header.mlir-toc
+      captures:
+        1: punctuation.decorator.mlir-toc
+        2: entity.name.function.mlir-toc
+    - match: ^\s+(↳)\s+(L)(\d+)\s+(→)\s+(§)\s*(\d+)\s+(·)\s+(L)(\d+)\s+(.+?)(\s+(\([^)]+\)))?\s*$
+      scope: meta.function.entry.mlir-toc
+      captures:
+        1: punctuation.decorator.mlir-toc
+        2: keyword.operator.line-ref.mlir-toc
+        3: constant.numeric.line.mlir-toc
+        4: punctuation.decorator.mlir-toc
+        5: punctuation.decorator.mlir-toc
+        6: constant.numeric.section.mlir-toc
+        7: punctuation.decorator.mlir-toc
+        8: keyword.operator.line-ref.mlir-toc
+        9: constant.numeric.line.mlir-toc
+        10: string.unquoted.title.mlir-toc
+        11: constant.other.pass.mlir-toc
+    - match: ^\s+(└─)\s+(L)(\d+)\s+(@)([\w$.-]+)\s*$
+      scope: meta.section.function.mlir-toc
+      captures:
+        1: punctuation.decorator.mlir-toc
+        2: keyword.operator.line-ref.mlir-toc
+        3: constant.numeric.line.mlir-toc
+        4: punctuation.decorator.mlir-toc
+        5: entity.name.function.mlir-toc
+    - match: ^\s*(\d+)\s+(▸)\s+(L)(\d+)\s+(.+?)(\s+(\([^)]+\)))?\s*$
+      scope: meta.section.entry.mlir-toc
+      captures:
+        1: constant.numeric.index.mlir-toc
+        2: punctuation.decorator.mlir-toc
+        3: keyword.operator.line-ref.mlir-toc
+        4: constant.numeric.line.mlir-toc
+        5: string.unquoted.title.mlir-toc
+        6: constant.other.pass.mlir-toc

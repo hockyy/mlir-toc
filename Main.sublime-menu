@@ -1,0 +1,30 @@
+[
+    {
+        "id": "preferences",
+        "children":
+        [
+            {
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "MLIR TOC",
+                        "children":
+                        [
+                            {
+                                "caption": "Settings - Default",
+                                "command": "open_file",
+                                "args": {"file": "${packages}/mlir-toc/MLIRTOC.sublime-settings"}
+                            },
+                            {
+                                "caption": "Settings - User",
+                                "command": "open_file",
+                                "args": {"file": "${packages}/User/MLIRTOC.sublime-settings"}
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
